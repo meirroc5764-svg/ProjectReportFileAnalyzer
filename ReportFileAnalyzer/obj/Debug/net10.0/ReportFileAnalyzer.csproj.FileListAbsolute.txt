@@ -12,3 +12,4 @@ C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\obj\Deb
 C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\obj\Debug\net10.0\ReportFileAnalyzer.pdb
 C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\obj\Debug\net10.0\ReportFileAnalyzer.genruntimeconfig.cache
 C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\obj\Debug\net10.0\ref\ReportFileAnalyzer.dll
+C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\obj\Debug\net10.0\ReportFileAnalyzer.sourcelink.json
