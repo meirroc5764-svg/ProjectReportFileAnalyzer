@@ -52,6 +52,7 @@ namespace projectRFA
         }
         static void ProcessReports(string[] allData, string[] unit, ClassReportsType[] reportType, int[] priority, double[] score, ClassStatus[] status)
         {
+            int validIndex = 0;
 
             for (int index = 0; index < allData.Length; index++)
             {
@@ -59,7 +60,7 @@ namespace projectRFA
                 int Priority;
                 double Score;
                 ClassStatus Status;
-
+                
 
                 if (allData[index] == null)
                     continue;
@@ -84,7 +85,7 @@ namespace projectRFA
                     continue;
                 }
 
-                else if (!int.TryParse(cleanLine[2], out Priority))
+                else if (!int.TryParse(cleanLine[2].Trim(), out Priority))
                 {
                     Console.WriteLine($"Invalid Priority: {cleanLine[2]}");
                     continue;
@@ -108,62 +109,72 @@ namespace projectRFA
                     continue;
                 }
 
-                unit[index] = cleanLine[0];
-                reportType[index] = ReportType;
-                priority[index] = Priority;
-                score[index] = Score;
-                status[index] = Status;
+                unit[validIndex] = cleanLine[0].Trim();
+                reportType[validIndex] = ReportType;
+                priority[validIndex] = Priority;
+                score[validIndex] = Score;
+                status[validIndex] = Status;
                 Console.WriteLine("Valid record processed.");
                 Console.WriteLine($"unit: {cleanLine[0]}, reportType: {ReportType}, priority: {Priority}, score: {Score}, status: {Status}");
-
+                validIndex++;
             }
         }
-        static double CalculateAverage(double[] Score)
+        static double CalculateAverage(double[] Score, int datalen)
         {
                 double average = 0;
-                foreach(double score in Score)
+                for (int i = 0; i < datalen; i++)
                 {
-                    average += score;
+                    average += Score[i];
                 }
                 return average / Score.Length;
             
 
         }
-        static double FindMaxScore(double[] Score)
+        static double FindMaxScore(double[] Score, int datalen)
         {
             double maxScore = 0;
-            foreach (double score in Score)
+            for (int i = 0; i < datalen; i++)
             {
-                if (score > maxScore)
-                    maxScore = score;
+                if (Score[i] > maxScore)
+                    maxScore = Score[i];
             }
                 
             return maxScore;
         }
-        static double FindMinScore(double[] Score)
+        static double FindMinScore(double[] Score, int datalen)
         {
             double minScore = 0;
-            foreach (int score in Score)
+            for (int i = 0; i < datalen; i++)
             {
-                if (score  < minScore)
+                if (Score[i] < minScore)
                 {
-                    minScore = score;
+                    minScore = Score[i];
                 }
-                return minScore;
+
             }
-            static int CountByStatus(ClassStatus[] StatusAr, ClassStatus userStatus)
-            {
+            return minScore;
+        }
+        static int CountByStatus(ClassStatus[] StatusAr, ClassStatus userStatus, int datalen)
+        { 
                 int count = 0;
-                foreach(ClassStatus status in StatusAr)
-                {
-                    if (status == userStatus)
+            for (int i = 0; i < datalen; i++)
+            {
+                    if (StatusAr[i] == userStatus)
                         count++;
 
-                }
-                return count;
             }
-
+                return count;
         }
-        
+        static int CountByType(ClassReportsType[] ReportTypeAr, ClassReportsType userType, int datalen)
+        {
+            int count = 0;
+            for (int i = 0; i < datalen; i++)
+            {
+                if (ReportTypeAr[i] == userType)
+                    count++;
+
+            }
+            return count;
+        }
     }
 }
