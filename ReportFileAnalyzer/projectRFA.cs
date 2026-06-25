@@ -30,8 +30,15 @@ namespace projectRFA
             int[] priority = new int[MAX_REPORTS];
             double[] score = new double[MAX_REPORTS];
             ClassStatus[] status = new ClassStatus[MAX_REPORTS];
-            
+
+
+            int lendata = allData.Length;
             ProcessReports(allData, unit, reportType, priority, score, status);
+            DisplayBasicStatistics(lendata, score);
+            DisplayStatusCounts(lendata, status);
+            DisplayTypeCounts(lendata, reportType);
+            DisplayHighestPriorityApproved(lendata, unit, reportType, priority, score, status);
+            DisplayAverageByPriority(lendata, priority, score);
         }
 
         static string[] ReadFile(string path)
@@ -118,15 +125,17 @@ namespace projectRFA
                 Console.WriteLine($"unit: {cleanLine[0]}, reportType: {ReportType}, priority: {Priority}, score: {Score}, status: {Status}");
                 validIndex++;
             }
+            Console.WriteLine($"File loaded:{validIndex} correct lines found");
+            Console.WriteLine($"File loaded:{allData.Length - validIndex} not correct lines found");
         }
         static double CalculateAverage(double[] Score, int datalen)
         {
-                double average = 0;
-                for (int i = 0; i < datalen; i++)
-                {
-                    average += Score[i];
-                }
-                return average / Score.Length;
+            double average = 0;
+            for (int i = 0; i < datalen; i++)
+            {
+                average += Score[i];
+            }
+            return (average / Score.Length);
             
 
         }
@@ -180,7 +189,7 @@ namespace projectRFA
         {
             Console.WriteLine("=== Report Statistics ===");
             Console.WriteLine($"Total Reports:{lendata} ");
-            Console.WriteLine($"Average Score: {CalculateAverage(Score, lendata)}");
+            Console.WriteLine($"Average Score: {CalculateAverage(Score, lendata):F2}");
             Console.WriteLine($"Highest Score: {FindMaxScore(Score, lendata)}");
             Console.WriteLine($"Lowest Score: {FindMinScore(Score, lendata)}");
         }
@@ -191,6 +200,53 @@ namespace projectRFA
                 Console.WriteLine($"{status}: {CountByStatus(Status, status, lendata)}");
             }
         }
+        static void DisplayTypeCounts(int lendata, ClassReportsType[] ReportType)
+        {
+            foreach (ClassReportsType type in Enum.GetValues<ClassReportsType>())
+            {
+                Console.WriteLine($"{type}: {CountByType(ReportType, type, lendata)}");
+            }
+        }
+        static void DisplayHighestPriorityApproved(int lendata, string[] unit, ClassReportsType[] reportType, int[] Priority, double[] score, ClassStatus[] Status)
+        {
+            int index = 0 ;
+            for (int i = 0; i < lendata; i++)
+            {
+                if (Status[i] == ClassStatus.Approved)
+                {
+                    if (Priority[index] < Priority[i])
+                        index = i;
+                }
+            }
+            Console.WriteLine($"unit:{unit[index]},reportType: {reportType[index]},Priority: {Priority[index]},score:{score[index]},Status: {Status[index]}");
+        }
+        static double AvergeByPrioryty(int lendata, double[] Score, int[] Priority, int userPriority)
+        {
+            int count = 0;
+            double score = 0;
+            for (int i = 0; i < lendata; i++)
+            {
 
+                if (Priority[i] == userPriority)
+                {
+                    score += Score[i];
+                    count++;
+                }
+            }
+            if (count == 0)
+                return 0.0;
+            return score / count;
+
+
+        }
+        static void DisplayAverageByPriority(int lendata, int[] Priority, double[] Score)
+        {
+                Console.WriteLine("=== Average Score by Priority ===");
+                Console.WriteLine($"Priority 1: {AvergeByPrioryty(lendata, Score, Priority, 1):F2}");
+                Console.WriteLine($"Priority 2: {AvergeByPrioryty(lendata, Score, Priority, 2):F2}");
+                Console.WriteLine($"Priority 3: {AvergeByPrioryty(lendata, Score, Priority, 3):F2}");
+                Console.WriteLine($"Priority 4: {AvergeByPrioryty(lendata, Score, Priority, 4):F2}");
+                Console.WriteLine($"Priority 5: {AvergeByPrioryty(lendata, Score, Priority, 5):F2}");
+        }
     }
 }
