@@ -140,6 +140,30 @@ namespace projectRFA
                 
             return maxScore;
         }
-        static 
+        static double FindMinScore(double[] Score)
+        {
+            double minScore = 0;
+            foreach (int score in Score)
+            {
+                if (score  < minScore)
+                {
+                    minScore = score;
+                }
+                return minScore;
+            }
+            static int CountByStatus(ClassStatus[] StatusAr, ClassStatus userStatus)
+            {
+                int count = 0;
+                foreach(ClassStatus status in StatusAr)
+                {
+                    if (status == userStatus)
+                        count++;
+
+                }
+                return count;
+            }
+
+        }
+        
     }
 }
