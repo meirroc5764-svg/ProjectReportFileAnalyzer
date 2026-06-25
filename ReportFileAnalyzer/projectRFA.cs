@@ -176,7 +176,7 @@ namespace projectRFA
             }
             return count;
         }
-        static void DisplayBasicStatistics(int lendata, double Score, )
+        static void DisplayBasicStatistics(int lendata, double[] Score)
         {
             Console.WriteLine("=== Report Statistics ===");
             Console.WriteLine($"Total Reports:{lendata} ");
@@ -184,11 +184,11 @@ namespace projectRFA
             Console.WriteLine($"Highest Score: {FindMaxScore(Score, lendata)}");
             Console.WriteLine($"Lowest Score: {FindMinScore(Score, lendata)}");
         }
-        static void DisplayStatusCounts(int lendata, ClassReportsType TypeData , ClassReportsType ReportsType)
+        static void DisplayStatusCounts(int lendata, ClassStatus[] Status)
         {
-            foreach (ClassReportsType type in ReporteType)
+            foreach (ClassStatus status in Enum.GetValues<ClassStatus>())
             {
-                Console.WriteLine($"{type}: {CountByStatus(TypeData, type,  lendata)}")
+                Console.WriteLine($"{status}: {CountByStatus(Status, status, lendata)}");
             }
         }
 
