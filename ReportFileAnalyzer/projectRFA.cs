@@ -176,5 +176,21 @@ namespace projectRFA
             }
             return count;
         }
+        static void DisplayBasicStatistics(int lendata, double Score, )
+        {
+            Console.WriteLine("=== Report Statistics ===");
+            Console.WriteLine($"Total Reports:{lendata} ");
+            Console.WriteLine($"Average Score: {CalculateAverage(Score, lendata)}");
+            Console.WriteLine($"Highest Score: {FindMaxScore(Score, lendata)}");
+            Console.WriteLine($"Lowest Score: {FindMinScore(Score, lendata)}");
+        }
+        static void DisplayStatusCounts(int lendata, ClassReportsType TypeData , ClassReportsType ReportsType)
+        {
+            foreach (ClassReportsType type in ReporteType)
+            {
+                Console.WriteLine($"{type}: {CountByStatus(TypeData, type,  lendata)}")
+            }
+        }
+
     }
 }
