@@ -24,21 +24,27 @@ namespace projectRFA
             string path = @"C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\reports.txt";
 
             string[] allData = ReadFile(path);
+            if (allData == null)
+                Console.WriteLine("file not found");
+
+            else
+            {
+                string[] unit = new string[MAX_REPORTS];
+                ClassReportsType[] reportType = new ClassReportsType[MAX_REPORTS];
+                int[] priority = new int[MAX_REPORTS];
+                double[] score = new double[MAX_REPORTS];
+                ClassStatus[] status = new ClassStatus[MAX_REPORTS];
+
+
+                int lendata = allData.Length;
+                ProcessReports(allData, unit, reportType, priority, score, status);
+                DisplayBasicStatistics(lendata, score);
+                DisplayStatusCounts(lendata, status);
+                DisplayTypeCounts(lendata, reportType);
+                DisplayHighestPriorityApproved(lendata, unit, reportType, priority, score, status);
+                DisplayAverageByPriority(lendata, priority, score);
+            }
             
-            string[] unit = new string[MAX_REPORTS];
-            ClassReportsType[] reportType = new ClassReportsType[MAX_REPORTS];
-            int[] priority = new int[MAX_REPORTS];
-            double[] score = new double[MAX_REPORTS];
-            ClassStatus[] status = new ClassStatus[MAX_REPORTS];
-
-
-            int lendata = allData.Length;
-            ProcessReports(allData, unit, reportType, priority, score, status);
-            DisplayBasicStatistics(lendata, score);
-            DisplayStatusCounts(lendata, status);
-            DisplayTypeCounts(lendata, reportType);
-            DisplayHighestPriorityApproved(lendata, unit, reportType, priority, score, status);
-            DisplayAverageByPriority(lendata, priority, score);
         }
 
         static string[] ReadFile(string path)
@@ -98,7 +104,7 @@ namespace projectRFA
                     continue;
                 }
 
-                else if (0 > Priority || Priority > 6)
+                else if (1 > Priority || Priority > 5)
                 {
                     Console.WriteLine($"Invalid Priority: {cleanLine[2].Trim()}");
                     continue;
@@ -135,7 +141,7 @@ namespace projectRFA
             {
                 average += Score[i];
             }
-            return (average / Score.Length);
+            return (average / datalen);
             
 
         }
@@ -152,7 +158,7 @@ namespace projectRFA
         }
         static double FindMinScore(double[] Score, int datalen)
         {
-            double minScore = 0;
+            double minScore = Score[0];
             for (int i = 0; i < datalen; i++)
             {
                 if (Score[i] < minScore)
@@ -209,7 +215,7 @@ namespace projectRFA
         }
         static void DisplayHighestPriorityApproved(int lendata, string[] unit, ClassReportsType[] reportType, int[] Priority, double[] score, ClassStatus[] Status)
         {
-            int index = 0 ;
+            int index = 0;
             for (int i = 0; i < lendata; i++)
             {
                 if (Status[i] == ClassStatus.Approved)
@@ -234,19 +240,25 @@ namespace projectRFA
                 }
             }
             if (count == 0)
-                return 0.0;
+                return -1;
             return score / count;
 
 
         }
+        
         static void DisplayAverageByPriority(int lendata, int[] Priority, double[] Score)
         {
-                Console.WriteLine("=== Average Score by Priority ===");
-                Console.WriteLine($"Priority 1: {AvergeByPrioryty(lendata, Score, Priority, 1):F2}");
-                Console.WriteLine($"Priority 2: {AvergeByPrioryty(lendata, Score, Priority, 2):F2}");
-                Console.WriteLine($"Priority 3: {AvergeByPrioryty(lendata, Score, Priority, 3):F2}");
-                Console.WriteLine($"Priority 4: {AvergeByPrioryty(lendata, Score, Priority, 4):F2}");
-                Console.WriteLine($"Priority 5: {AvergeByPrioryty(lendata, Score, Priority, 5):F2}");
+            Console.WriteLine("=== Average Score by Priority ===");
+
+            for (int i = 1; i <= 5; i++)
+            {
+                double average = AvergeByPrioryty(lendata, Score, Priority, i);
+
+                if (average == -1)
+                    Console.WriteLine($"Priority {i}: No reports");
+                else
+                    Console.WriteLine($"Priority {i}: {average:F2}");
+            }
         }
     }
 }
