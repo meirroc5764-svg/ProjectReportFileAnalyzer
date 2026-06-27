@@ -1,0 +1,74 @@
+C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\projectRFA.cs(56,28): warning CS8603: Возможно, возврат ссылки, допускающей значение NULL. [C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\ReportFileAnalyzer.csproj]
+C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\projectRFA.cs(62,24): warning CS8603: Возможно, возврат ссылки, допускающей значение NULL. [C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\ReportFileAnalyzer.csproj]
+File loaded:27 lines found
+Valid record processed.
+unit: Alpha, reportType: Collect, priority: 3, score: 87,5, status: Approved
+Valid record processed.
+unit: Bravo, reportType: Analyze, priority: 5, score: 92, status: Approved
+Valid record processed.
+unit: Charlie, reportType: Recon, priority: 2, score: 45,3, status: Pending
+Valid record processed.
+unit: Delta, reportType: Intel, priority: 4, score: 78,9, status: Approved
+Valid record processed.
+unit: Alpha, reportType: Collect, priority: 1, score: 63,2, status: Rejected
+Invalid Report Type: Unknown
+Invalid Priority: 6
+Invalid Score: invalid
+Valid record processed.
+unit: Golf, reportType: Recon, priority: 2, score: 55,7, status: Approved
+Invalid Score: 101.5!
+Valid record processed.
+unit: India, reportType: Collect, priority: 3, score: 72,8, status: Approved
+Valid record processed.
+unit: Juliet, reportType: Analyze, priority: 5, score: 89,4, status: Pending
+Valid record processed.
+unit: Kilo, reportType: Recon, priority: 1, score: 34,6, status: Rejected
+Valid record processed.
+unit: Lima, reportType: Intel, priority: 3, score: 67,2, status: Approved
+Valid record processed.
+unit: Mike, reportType: Collect, priority: 4, score: 91,3, status: Approved
+Valid record processed.
+unit: November, reportType: Analyze, priority: 2, score: 58,9, status: Pending
+Valid record processed.
+unit: Oscar, reportType: Recon, priority: 5, score: 99,8, status: Approved
+Valid record processed.
+unit: Papa, reportType: Intel, priority: 1, score: 42,1, status: Rejected
+Valid record processed.
+unit: Quebec, reportType: Collect, priority: 3, score: 76,5, status: Approved
+Valid record processed.
+unit: Romeo, reportType: Analyze, priority: 4, score: 85,7, status: Approved
+Valid record processed.
+unit:   Sierra, reportType: Collect, priority: 2, score: 88,5, status: Approved
+Valid record processed.
+unit: Tango  , reportType: Intel, priority: 3, score: 77,2, status: Approved
+Valid record processed.
+unit: Uniform, reportType: Recon, priority: 5, score: 91, status: Pending
+Valid record processed.
+unit: Victor, reportType: Analyze, priority: 4, score: 82,3, status: Approved
+Valid record processed.
+unit: Whiskey, reportType: Collect, priority: 3, score: 75,5, status: Approved
+Valid record processed.
+unit: Yankee, reportType: Intel, priority: 3, score: 100, status: Approved
+Valid record processed.
+unit: Zulu, reportType: Recon, priority: 1, score: 0, status: Rejected
+File loaded:23 correct lines found
+File loaded:4 not correct lines found
+=== Report Statistics ===
+Total Reports:23 
+Average Score: 71,97
+Highest Score: 100
+Lowest Score: 0
+Rejected: 4
+Approved: 15
+Pending: 4
+Intel: 5
+Recon: 6
+Analyze: 5
+Collect: 7
+unit:Bravo, reportType:Analyze, Priority:5, score:92, Status:Approved
+=== Average Score by Priority ===
+Priority 1: 34,98
+Priority 2: 62,10
+Priority 3: 79,53
+Priority 4: 84,55
+Priority 5: 93,05

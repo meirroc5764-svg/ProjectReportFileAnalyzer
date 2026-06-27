@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReportFileAnalyzer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21f6ac6498657916cb9ab9bc459d38bfb99c3824")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a0b9b6c3fed83b5c90122657d27ef383d0b9a3c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReportFileAnalyzer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReportFileAnalyzer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
