@@ -220,19 +220,29 @@ namespace projectRFA
         static void DisplayHighestPriorityApproved(int lendata, string[] unit, ClassReportsType[] reportType, int[] Priority, double[] score, ClassStatus[] Status)
         {
             int index = 0;
+            bool found = false;
+
             for (int i = 0; i < lendata; i++)
             {
                 if (Status[i] == ClassStatus.Approved)
                 {
+                    found = true;
+
                     if (Priority[index] < Priority[i])
                         index = i;
                 }
             }
-            Console.WriteLine($"unit:{unit[index]},reportType: {reportType[index]},Priority: {Priority[index]},score:{score[index]},Status: {Status[index]}");
+
+            if (!found)
+            {
+                Console.WriteLine("No approved reports");
+                return;
+            }
+            Console.WriteLine($"unit:{unit[index]}, reportType:{reportType[index]}, Priority:{Priority[index]}, score:{score[index]}, Status:{Status[index]}");
         }
         static double AvergeByPrioryty(int lendata, double[] Score, int[] Priority, int userPriority)
         {
-            int count = -1;
+            int count = 0;
             double score = 0;
             for (int i = 0; i < lendata; i++)
             {
@@ -243,7 +253,7 @@ namespace projectRFA
                     count++;
                 }
             }
-            if (count == -1)
+            if (count == 0)
                 return -1;
             return score / count;
 
