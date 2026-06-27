@@ -1,5 +1,3 @@
-C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\projectRFA.cs(56,28): warning CS8603: Возможно, возврат ссылки, допускающей значение NULL. [C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\ReportFileAnalyzer.csproj]
-C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\projectRFA.cs(62,24): warning CS8603: Возможно, возврат ссылки, допускающей значение NULL. [C:\Users\Aenigma\OneDrive\Desktop\projectFileAnalyzer\ReportFileAnalyzer\ReportFileAnalyzer.csproj]
 File loaded:27 lines found
 Valid record processed.
 unit: Alpha, reportType: Collect, priority: 3, score: 87,5, status: Approved
