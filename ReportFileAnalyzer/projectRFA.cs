@@ -37,7 +37,6 @@ namespace projectRFA
 
 
                 int lendata = ProcessReports(allData, unit, reportType, priority, score, status);
-                ProcessReports(allData, unit, reportType, priority, score, status);
                 DisplayBasicStatistics(lendata, score);
                 DisplayStatusCounts(lendata, status);
                 DisplayTypeCounts(lendata, reportType);
