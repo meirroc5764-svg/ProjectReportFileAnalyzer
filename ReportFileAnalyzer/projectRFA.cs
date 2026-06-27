@@ -36,7 +36,7 @@ namespace projectRFA
                 ClassStatus[] status = new ClassStatus[MAX_REPORTS];
 
 
-                int lendata = allData.Length;
+                int lendata = ProcessReports(allData, unit, reportType, priority, score, status);
                 ProcessReports(allData, unit, reportType, priority, score, status);
                 DisplayBasicStatistics(lendata, score);
                 DisplayStatusCounts(lendata, status);
@@ -63,7 +63,7 @@ namespace projectRFA
                 return null;
 
         }
-        static void ProcessReports(string[] allData, string[] unit, ClassReportsType[] reportType, int[] priority, double[] score, ClassStatus[] status)
+        static int ProcessReports(string[] allData, string[] unit, ClassReportsType[] reportType, int[] priority, double[] score, ClassStatus[] status)
         {
             int validIndex = 0;
 
@@ -133,6 +133,7 @@ namespace projectRFA
             }
             Console.WriteLine($"File loaded:{validIndex} correct lines found");
             Console.WriteLine($"File loaded:{allData.Length - validIndex} not correct lines found");
+            return validIndex;
         }
         static double CalculateAverage(double[] Score, int datalen)
         {
