@@ -83,7 +83,11 @@ namespace projectRFA
                     Console.WriteLine("Invalid len");
                     continue;
                 }
-                    
+                if (cleanLine[0].Trim().Length == 0)
+                {
+                    Console.WriteLine("Invalid Unit Name");
+                    continue;
+                }
 
                 if (!Enum.TryParse<ClassReportsType>(cleanLine[1].Trim(), true, out ReportType))
                 {
@@ -228,7 +232,7 @@ namespace projectRFA
         }
         static double AvergeByPrioryty(int lendata, double[] Score, int[] Priority, int userPriority)
         {
-            int count = 0;
+            int count = -1;
             double score = 0;
             for (int i = 0; i < lendata; i++)
             {
@@ -239,7 +243,7 @@ namespace projectRFA
                     count++;
                 }
             }
-            if (count == 0)
+            if (count == -1)
                 return -1;
             return score / count;
 
